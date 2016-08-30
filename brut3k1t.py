@@ -95,7 +95,7 @@ def main():
             sleep(1)
             print P + "[*] Starting dictionary attack! [*]" + W
             print "Using %s seconds of delay. Default is 1 second" % delay
-            sshBruteforce(address, username, wordlist, port)
+            sshBruteforce(address, username, wordlist, port, delay)
             call(["rm", "filename.log"])
 
     # FTP bruteforce
@@ -112,7 +112,7 @@ def main():
             sleep(1)
             print P + "[*] Starting dictionary attack! [*]" + W
             print "Using %s seconds of delay. Default is 1 second" % delay
-
+            ftpBruteforce(address, username, wordlist, delay, port)
 
 
 if __name__ == '__main__':
