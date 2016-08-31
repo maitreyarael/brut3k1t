@@ -7,6 +7,7 @@ from subprocess import call
 path.append('src/')
 from sshLib import *
 from ftpLib import *
+from smtpLib import *
 
 W = '\033[0m'  # white (normal)
 R = '\033[31m'  # red
@@ -23,7 +24,6 @@ try:
     import mechanize
     import selenium
     import paramiko
-    from ftplib import FTP
 except ImportError:
     print R + "You are missing dependencies! They will be installed for you with pip." + W
     print "Loading..."
@@ -114,6 +114,22 @@ def main():
             print "Using %s seconds of delay. Default is 1 second" % delay
             ftpBruteforce(address, username, wordlist, delay, port)
 
+    elif service == 'smtp':
+        if address is None:
+            print R + "[!] You need to provide an SMTP server address for cracking! [!]" + W
+            print O + "| Gmail: smtp.gmail.com |\n| Outlook: smtp.live.com |\n| Yahoo Mail: smtp.mail.yahoo.com |\n| AOL: smtp.aol.com | " + W
+        else:
+            print C + "[*] Email Address: %s" % address + W
+            sleep(0.5)
+            if port is None:
+                print O + "[?] Port not set. Automatically set to 587 for you [?]"
+                print O + "[?] NOTE: SMTP has several ports for usage, including 25, 465, 587" + W
+                port = 587
+            print C + "[*] Port: %s "  % port + W
+            sleep(1)
+            print P + "[*] Starting dictionary attack! [*]" + W
+            print "Using %s seconds of delay. Default is 1 second" % delay
+            smtpBruteforce(address, username, wordlist, delay, port)
 
 if __name__ == '__main__':
     main()
