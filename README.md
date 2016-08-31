@@ -66,13 +66,13 @@ Typing `python brut3k1t -h` shows the help menu:
 
 Examples of usage:
 
-* Cracking SSH server running on `192.168.1.3` using `root` and `wordlist.txt` as a wordlist.
+Cracking SSH server running on `192.168.1.3` using `root` and `wordlist.txt` as a wordlist.
 
     python brut3k1t.py -s ssh -a 192.168.1.3 -u root -w wordlist.txt
 
 The program will automatically set the port to 22, but if it is different, specify with `-p` flag.
 
-* Cracking email `test@gmail.com` with `wordlist.txt` on port `25` with a 3 second delay
+Cracking email `test@gmail.com` with `wordlist.txt` on port `25` with a 3 second delay
 
     python brut3k1t.py -s smtp -a smtp.gmail.com -u test@gmail.com -w wordlist.txt -p 25 -d 3
 
