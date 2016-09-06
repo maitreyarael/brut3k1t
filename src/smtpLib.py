@@ -5,10 +5,7 @@ W = '\033[0m'  # white (normal)
 R = '\033[31m'  # red
 G = '\033[32m'  # green
 O = '\033[33m'  # orange
-B = '\033[34m'  # blue
-P = '\033[35m'  # purple
-C = '\033[36m'  # cyan
-GR = '\033[37m'  # gray
+
 
 def smtpBruteforce(address, username, wordlist, delay, port):
     wordlist = open(wordlist, 'r')
@@ -22,6 +19,8 @@ def smtpBruteforce(address, username, wordlist, delay, port):
             s.login(str(username), str(password))
             print G + "[*] Username: %s | [*] Password found: %s\n" % (username, password) + W
             s.close()
+        except Exception, e:
+            print R + "[!] OOPs something went wrong! Check if you have typed everything correctly, as well as the email address [!]" + W
         except:
              print O + "[*] Username: %s | [*] Password: %s | Incorrect!\n" % (username, password) + W
              sleep(delay)
